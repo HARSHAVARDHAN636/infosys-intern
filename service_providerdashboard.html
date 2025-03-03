@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trainer Dashboard - Pet Haven</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            display: flex;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 250px;
+            background: #198754;
+            color: white;
+            padding: 20px;
+        }
+
+        .sidebar .logo-container {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .sidebar img {
+            height: 50px;
+        }
+
+        .sidebar span {
+            display: block;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .sidebar a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+        }
+
+        .sidebar a:hover {
+            background: #145a32;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: 260px;
+            padding: 20px;
+            width: 100%;
+        }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #198754;
+            color: white;
+            padding: 10px 20px;
+        }
+
+        .top-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .notification {
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .profile-circle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: white;
+            color: #198754;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .logout-btn {
+            background: red;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+        }
+
+        /* Dashboard Sections */
+        .dashboard-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+            
+        }
+
+        .dashboard-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .dashboard-card button {
+            width: 100%;
+        }
+
+        /* Profile Section */
+        .profile-section {
+            display: none;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        .profile-section input {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .save-btn {
+            background: #198754;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        /* Notification */
+        .notification-success {
+            display: none;
+            background: #28a745;
+            color: white;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .logo{ 
+        text-align: center;
+        }
+
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sidebar 
+    <div class="sidebar">
+        <div class="logo-container">
+            <img src="paw-logo.png" alt="Paw Logo">
+            <span>PetHaven</span>
+        </div>-->
+        <div class="sidebar" id="sidebar">
+            <div class="logo">
+                <i class="fas fa-paw"></i>
+                <h2>&nbsp;PetHaven</h2>
+            </div>
+        <a href="#">View Scheduled Appointments</a>
+        <a href="#">Manage Training Sessions</a>
+        <a href="#">Dog Spa Bookings</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="navbar">
+            <h2>Trainer Dashboard</h2>
+            <div class="top-right">
+                <i class="fas fa-bell notification"></i>
+                <div class="profile-circle" onclick="toggleProfile()">T</div>
+                <button class="logout-btn">Logout</button>
+            </div>
+        </div>
+
+        <div class="dashboard-section">
+            <div class="dashboard-card">
+                <h4>View Scheduled Appointments</h4>
+                <p>Check your upcoming training sessions.</p>
+                <button class="btn btn-success">Check</button>
+            </div>
+
+            <div class="dashboard-card">
+                <h4>Manage Training Sessions</h4>
+                <p>Update or cancel upcoming bookings.</p>
+                <button class="btn btn-success">Manage</button>
+            </div>
+
+            <div class="dashboard-card">
+                <h4>Dog Spa Bookings</h4>
+                <p>View and manage dog spa appointments.</p>
+                <button class="btn btn-success">View Bookings</button>
+            </div>
+        </div>
+
+        <!-- Profile Section -->
+        <div id="profileSection" class="profile-section">
+            <h4>Profile</h4>
+            <input type="text" id="username" value="Trainer01">
+            <input type="email" id="email" value="trainer@example.com">
+            <input type="text" id="phone" value="123-456-7890">
+            <input type="text" id="location" value="New York">
+            <input type="text" id="city" value="Brooklyn">
+            <input type="text" id="hourlyRate" value="$50/hr">
+            <input type="text" id="experience" value="5 Years">
+            <textarea id="description">Expert pet trainer.</textarea>
+            <button class="save-btn" onclick="saveProfile()">Save Changes</button>
+            <div id="successMsg" class="notification-success">Changes saved successfully!</div>
+        </div>
+
+    </div>
+
+    <script>
+        function toggleProfile() {
+            var profile = document.getElementById("profileSection");
+            profile.style.display = (profile.style.display === "block" ? "none" : "block");
+        }
+
+        function saveProfile() {
+            document.getElementById("successMsg").style.display = "block";
+            setTimeout(() => {
+                document.getElementById("successMsg").style.display = "none";
+            }, 3000);
+        }
+    </script>
+
+</body>
+</html>
