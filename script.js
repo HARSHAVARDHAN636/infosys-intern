@@ -38,6 +38,6 @@ function logout() {
 document.addEventListener("DOMContentLoaded", function() {
     let storedRole = localStorage.getItem("userRole");
     if (!storedRole) {
-        window.location.href = "registration_login_page.html"; // Redirect if no session found
+        window.location.href = "Auth.html"; // Redirect if no session found
     }
 });
